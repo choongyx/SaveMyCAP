@@ -1,0 +1,24 @@
+<template name="sidebar">
+    <aside class="sidebar-left"> 
+    <img src="bell_curve_god.png" class="icon">
+    <a class="company-logo" href="#">SaveMyCAP</a>
+        <div class="sidebar-links" id="side-menu">
+            {{#if currentUser}}
+            <a class="link-red" href="/profile" id="profile-link"><i class="fa fa-user"></i>Profile</a>
+            <a class="link-blue" href="/add" id="add-link"><i class="fa fa-plus"></i>Add Module</a>
+            <a class="link-yellow" href="/myModules" id="myModules-link"><i class="fa fa-book"></i>My Modules</a>
+
+            <!-- If want to have each module a sidebar icon
+            {{#each module}}
+            <a class="link-green" href="#" id="mod"><i class="fa fa-graduation-cap"></i>{{moduleCode}}</a>
+            {{else}}
+            {{/each}}
+        -->
+            <a class="link-purple logout" href="#" id="logout-link"><i class="fa fa-sign-out"></i>Logout</a>
+            
+            {{else}}
+            <a class="" href="/" id="login-link"><i class="fa fa-sign-in"></i>Login</a>
+            {{/if}}
+        </div>
+    </aside>
+</template>

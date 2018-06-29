@@ -1,0 +1,38 @@
+<template name = "add">
+	{{#if currentUser}}
+	<div id="addModule-wrap">
+		<center>
+			<form class="add-module">
+				<h2>Add Module</h2>
+				<br>
+				<div>
+					<h4>Enter module code: </h4>
+					<label for="moduleCode" class="sr-only">Module Code</label>
+					<input type="text" name="moduleCode" id="moduleCode" class="form-control" placeholder="e.g.CS2030">
+				</div>
+				<div>
+					<h4>Enter your target grade for this module:</h4>
+					<label for="targetGrade" class="sr-only">Target Grade</label>
+					<select name="targetGrade" id="targetGrade" class="form-control" placeholder="Target Grade">
+					    <option value="A+">A+</option>
+					    <option value="A">A</option>
+					    <option value="A-">A-</option>
+					    <option value="B+">B+</option>
+					    <option value="B">B</option>
+					    <option value="B-">B-</option>
+					    <option value="C+">C+</option>
+					    <option value="C">C</option>
+					    <option value="D+">D+</option>
+					    <option value="D">D</option>
+					    <option value="F">F</option>
+				  	</select>
+				</div>
+				
+				<button class="btn btn-lg btn-success btn-block" type = "submit">add</button>
+			</form>
+		</center>
+	</div>
+	{{else}}
+	{{/if}}
+
+</template>

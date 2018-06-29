@@ -1,0 +1,33 @@
+<!--NOT USING THIS FILE-->
+<template name="update">
+  	<div id="updateScore">
+		<center>
+			<form class="add-CA">
+				<h3 class="addCA-heading">Add CA score</h3>
+				<p>Module Code: <input type="text" name="mod" id="mod" placeholder="e.g. CS2030"></p>
+                    <table class = "table table-bordered">
+                        <thead>
+	                        <tr>
+	                        <th>CA Component</th>
+	                        <th>Weightage</th>
+	                        <th>Marks Obtained</th>
+	                        <th>Total Marks</th>
+	                    	</tr>
+                    	</thead>
+                    	<tbody>
+                            <tr>
+                            <td><input type="text" name="ca" id="ca" placeholder="e.g. Attendance"></td>
+                            <td><input type="number" name="weightage" min="0" max="1" step="0.01" id="weightage" placeholder="e.g. 0.5"></td>
+                            <td><input type="number" name="mark" min="0" id="mark"></td>
+                            <td><input type="number" name="totalMark" min="0" id="totalMark"></td>
+                            </tr>
+                        </tbody>
+                    </table> 
+                    <br>
+
+                    <button class="btn btn-lg btn-success btn-block" type = "submit">Update Score</button>
+			</form>
+		</center>
+	</div>
+
+</template>
