@@ -20,15 +20,7 @@ Template.signup.events({
 				email: email,
 				password: password,
 				userId: Meteor.userId(),
-				profile: {
-					laughScore: 0,
-					frownScore: 0,
-					pukeScore: 0,
-					voted: [], 
-					numOfMod: 0, 
-					finalCap: 0,
-					//totalCap: [],
-				}
+
 			}, function(err){
 				if(err){
 					Bert.alert(err.reason, "danger", "growl-top-right");
@@ -37,6 +29,8 @@ Template.signup.events({
 					Router.go("/profile");
 				}
 			});
+
+			Meteor.call('initialiseCAP');
 		}
 
 		return false; //prevent submit

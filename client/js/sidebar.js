@@ -15,13 +15,3 @@ Template.sidebar.events({
 	},
 
 });
-
-/**This is needed only if I want each module to have a sidebar icon
-Template.sidebar.helpers({
-	module: function() {
-		//go to collection jokes and find the jokes
-		var module = Modules.find({}, {sort: {createdAt: -1}});
-		return module;
-	}
-});
-*/

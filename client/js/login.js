@@ -1,6 +1,6 @@
 Tracker.autorun(function(){
 	if(Meteor.userId()){
-		Router.go("/myModules");
+		Router.go("/myModules"); //go to myModules page immediately after login
 	}
 });
 
@@ -9,11 +9,6 @@ Template.login.rendered = function() {
 	$("#myModules-link").removeClass('selected');
 	$("#profile-link").removeClass('selected');
 	$("#add-link").removeClass('selected');
-	$("#mod1-link").removeClass('selected');
-	$("#mod3-link").removeClass('selected');
-	$("#mod2-link").removeClass('selected');
-	$("#mod4-link").removeClass('selected');
-	$("#mod5-link").removeClass('selected');
 }
 
 Template.login.events({
