@@ -31,19 +31,7 @@ Template.profile.helpers({
 	},
 	
 	targetCAP: function() {
-
-		Cap.aggregate(
-  			[
-     			{
-       				$project:
-         			{
-           				totalCapAvg: { $avg: "$totalCap" }
-         				}
-     			}
-   			]
-			)
-		
-		return Cap.totalCapAvg;
+		return Meteor.user().profile.finalCap;
 	},
 	/**
 	userJokes: function() {

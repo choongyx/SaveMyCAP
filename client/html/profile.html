@@ -1,3 +1,5 @@
+
+
 <template name="profile">
 	{{#if currentUser}}
 	<!-- profile-->
@@ -6,7 +8,7 @@
 			<img src="github.svg" class="profile-img">
 			<h1 class="username">{{username}}</h1>
 			<h3>{{email}}</h3>
-            <h3>Target CAP: {{totalCapAvg}}</h3>
+            <h3>Target CAP : {{targetCAP}}</h3>
 		</center>
 
 	</div>
@@ -52,13 +54,13 @@
     <!--start of joke-->
     <div class = "module-wrap">
         <div class ="row">
-            <div class ="module-added" id ="info">
+            <div class ="module-addedprofile" id ="info">
                 <h2 class="module-title">{{moduleCode}}</h2>
                 <h4 class="regular target-grade">Target: {{targetGrade}}</h4>
                 <p class="date">Added on: {{date}}</p>
+                <button class="btn btn-sml btn-danger" id="delete-mod">Delete Module</button>
             </div>
         </div>
-        <button class="btn btn-sml btn-danger" id="delete-mod">Delete Module</button>
     </div>
     <!--end of joke-->
     {{else}}

@@ -15,11 +15,6 @@ Template.signup.events({
 			isEmail(email) &&
 			areValidPasswords(password,password2)) {
 
-			Cap.insert({
-				totalCap: [],
-				userId: Meteor.userId(),
-			});
-
 			Accounts.createUser({
 				username: username,
 				email: email,

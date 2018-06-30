@@ -3,7 +3,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #2d2d2d;
+  background-color: #212020;
   background-size: cover;
   width: 200px;
   height: 100%;
@@ -40,7 +40,7 @@
   background-color: rgba(255, 255, 255, 0.1);
   text-align: center;
   color:  #b3bcc5;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: bold;
   border-left-width: 2px;
   border-left-style: solid;
@@ -75,38 +75,38 @@
 
 /* Link Colors */
 .sidebar-left .sidebar-links a.link-blue {
-  border-color: #2495d0;
+  border-color: #B7F7FF;
 }
 .sidebar-left .sidebar-links a.link-blue i.fa {
-  color: #2495d0;
+  color: #B7F7FF;
 }
 
 .sidebar-left .sidebar-links a.link-red {
-  border-color: #ec4a4d;
+  border-color: #FFB7F4;
 }
 .sidebar-left .sidebar-links a.link-red i.fa {
-  color: #ec4a4d;
+  color: #FFB7F4;
 }
 
 .sidebar-left .sidebar-links a.link-yellow {
-  border-color: #f7cb5b;
+  border-color: #FFFFB7;
 }
 .sidebar-left .sidebar-links a.link-yellow i.fa {
-  color: #f7cb5b;
+  color: #FFFFB7;
 }
 
 .sidebar-left .sidebar-links a.link-green {
-  border-color: #52b859;
+  border-color: #C0FFB7;
 }
 .sidebar-left .sidebar-links a.link-green i.fa {
-  color: #52b859;
+  color: #C0FFB7;
 }
 
 .sidebar-left .sidebar-links a.link-purple {
   border-color: #915ba2;
 }
 .sidebar-left .sidebar-links a.link-purple i.fa {
-  color: #915ba2;
+  color: #F8E1FF;
 }
 
 /* Making the sidebar responsive */
