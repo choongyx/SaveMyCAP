@@ -11,7 +11,7 @@
 
 .module-addedprofile {
 	border: 1px solid #ececec;
-	background-color: #F3FFFF;
+	background-color: #FFF5FD;
 	padding: 10px 20px;
 	margin: 0px 0px 20px 0px;
 }
@@ -19,7 +19,7 @@
 .module-added {
 	width: 1220px;
 	border: 1px solid #ececec;
-	background-color: #FFFDF8;
+	background-color: #FFFEF5;
 	padding: 10px 20px;
 	margin-bottom: 50px;
 }
