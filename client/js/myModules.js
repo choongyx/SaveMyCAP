@@ -78,25 +78,25 @@ Template.myModules.events({
 		      isNotEmpty(mark) &&
 		      isNotEmpty(totalMark)) {
 		    	
-		    	if (!Meteor.call('addScores', ca, weightage, mark, totalMark, thisMod)) {
+		    	if (Meteor.call('addScores', ca, weightage, mark, totalMark, thisMod) == false) {
+		    		//BUG HEREEEE
 		    		Bert.alert("Weightage cannot be greater than 100%", "danger", "growl-top-right");
 		    		return false;
-		    	}
+		    	} else {
+			    	// Clear form
+			    	event.target.ca.value ="";
+			      	event.target.weightage.value ="";
+			      	event.target.mark.value ="";
+			      	event.target.totalMark.value ="";
 
-		    	// Clear form
-		    	event.target.ca.value ="";
-		      	event.target.weightage.value ="";
-		      	event.target.mark.value ="";
-		      	event.target.totalMark.value ="";
-
-		      	Bert.alert("Your score was updated!", "success", "growl-top-right");
-
+			      	Bert.alert("Your score was updated!", "success", "growl-top-right");
+			     }
 		  	} else {
 		      	Bert.alert("Please input all fields", "danger", "growl-top-right");
 		    }
 		}
 
-	    //return false;
+	    return false;
 	},
 
 });
