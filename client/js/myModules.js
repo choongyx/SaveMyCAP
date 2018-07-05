@@ -54,12 +54,18 @@ Template.myModules.events({
 	    var mark = event.target.mark.value;
 	    var totalMark = event.target.totalMark.value;    
 	    var thisMod = Modules.findOne({_id: this._id})._id;
+	    var currentMod = Modules.findOne({_id: thisMod});
 
+
+	    if( (currentMod.totalWeightage + weightage) > 100) {
+	    	Bert.alert("Weightage cannot be greater than 100%", "danger", "growl-top-right");
+	    	return false;
+	    }
 
 	    if (isNotEmpty(ca) &&
 	      isNotEmpty(weightage) &&
 	      isNotEmpty(mark) &&
-	      isNotEmpty(totalMark)) {
+	      isNotEmpty(totalMark) && isNotHundred(currentMod.totalWeightage)) {
 	    	
 	    	Meteor.call('addScores', ca, weightage, mark, totalMark, thisMod);
 
@@ -142,3 +148,11 @@ var isNotEmpty = function(value){
 	return false;
 }
 
+var isNotHundred = function(value){
+	if (value < 100) {
+		return true;
+	}
+	Bert.alert("All weightages already added up to 100%. Cannot add more CA Components.", "danger", "growl-top-right");
+	return false;
+
+}
