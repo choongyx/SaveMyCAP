@@ -56,8 +56,11 @@ Template.myModules.events({
 	    var thisMod = Modules.findOne({_id: this._id})._id;
 	    var currentMod = Modules.findOne({_id: thisMod});
 
+	    var newWeightage = currentMod.totalWeightage + weightage;
+
 	    //check if wil exceed 100
-	    if( (currentMod.totalWeightage + weightage) > 100) {
+	    if( newWeightage > 100) {
+	    	console.log(newWeightage);
 	    	Bert.alert("Weightage cannot be greater than 100%", "danger", "growl-top-right");
 	    	return false;
 	    }
