@@ -96,7 +96,7 @@ Template.myModules.events({
 		    }
 		}
 
-	    return false;
+	    //return false;
 	},
 
 });
