@@ -78,7 +78,7 @@ Template.myModules.events({
 		      isNotEmpty(mark) &&
 		      isNotEmpty(totalMark)) {
 		    	
-		    	if (Meteor.call('addScores', ca, weightage, mark, totalMark, thisMod) == false) {
+		    	if (!Meteor.call('addScores', ca, weightage, mark, totalMark, thisMod)) {
 		    		Bert.alert("Weightage cannot be greater than 100%", "danger", "growl-top-right");
 		    		return false;
 		    	}
