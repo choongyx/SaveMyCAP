@@ -56,30 +56,37 @@ Template.myModules.events({
 	    var thisMod = Modules.findOne({_id: this._id})._id;
 	    var currentMod = Modules.findOne({_id: thisMod});
 
-
+	    //check if wil exceed 100
 	    if( (currentMod.totalWeightage + weightage) > 100) {
 	    	Bert.alert("Weightage cannot be greater than 100%", "danger", "growl-top-right");
 	    	return false;
 	    }
 
-	    if (isNotEmpty(ca) &&
-	      isNotEmpty(weightage) &&
-	      isNotEmpty(mark) &&
-	      isNotEmpty(totalMark) && isNotHundred(currentMod.totalWeightage)) {
-	    	
-	    	Meteor.call('addScores', ca, weightage, mark, totalMark, thisMod);
+	    //check if current total weightages all add up to already 100
+	    if(currentMod.totalWeightage == 100) {
+	    	Bert.alert("All weightages already added up to 100%. Cannot add more CA Components.", "danger", "growl-top-right");
+	    	return false;
+	    } else {
 
-	    	// Clear form
-	    	event.target.ca.value ="";
-	      	event.target.weightage.value ="";
-	      	event.target.mark.value ="";
-	      	event.target.totalMark.value ="";
+		    if (isNotEmpty(ca) &&
+		      isNotEmpty(weightage) &&
+		      isNotEmpty(mark) &&
+		      isNotEmpty(totalMark)) {
+		    	
+		    	Meteor.call('addScores', ca, weightage, mark, totalMark, thisMod);
 
-	      	Bert.alert("Your score was updated!", "success", "growl-top-right");
+		    	// Clear form
+		    	event.target.ca.value ="";
+		      	event.target.weightage.value ="";
+		      	event.target.mark.value ="";
+		      	event.target.totalMark.value ="";
 
-	  	} else {
-	      	Bert.alert("Please input all fields", "danger", "growl-top-right");
-	    }
+		      	Bert.alert("Your score was updated!", "success", "growl-top-right");
+
+		  	} else {
+		      	Bert.alert("Please input all fields", "danger", "growl-top-right");
+		    }
+		}
 
 	    return false;
 	},
@@ -146,13 +153,4 @@ var isNotEmpty = function(value){
 	}
 	Bert.alert("Please fill in all fields", "danger", "growl-top-right");
 	return false;
-}
-
-var isNotHundred = function(value){
-	if (value < 100) {
-		return true;
-	}
-	Bert.alert("All weightages already added up to 100%. Cannot add more CA Components.", "danger", "growl-top-right");
-	return false;
-
 }
