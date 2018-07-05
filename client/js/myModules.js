@@ -78,7 +78,10 @@ Template.myModules.events({
 		      isNotEmpty(mark) &&
 		      isNotEmpty(totalMark)) {
 		    	
-		    	Meteor.call('addScores', ca, weightage, mark, totalMark, thisMod);
+		    	if (Meteor.call('addScores', ca, weightage, mark, totalMark, thisMod) == false) {
+		    		Bert.alert("Weightage cannot be greater than 100%", "danger", "growl-top-right");
+		    		return false;
+		    	}
 
 		    	// Clear form
 		    	event.target.ca.value ="";
