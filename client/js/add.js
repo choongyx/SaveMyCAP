@@ -8,16 +8,19 @@ Template.add.rendered = function() {
 Template.add.events({
 	"submit .add-module": function() {
 		var moduleCode = event.target.moduleCode.value;
+		var mc = event.target.mc.value;
 		var targetGrade = event.target.targetGrade.value;
 		var currentUser = Meteor.userId();
 
 		if (isNotEmpty(moduleCode) &&
-			isNotEmpty(targetGrade)) {
+			isNotEmpty(targetGrade) &&
+			isNotEmpty(mc)) {
 			
-			Meteor.call('addModule', moduleCode, targetGrade);
-			Meteor.call('updateCAP', targetGrade, currentUser);
+			Meteor.call('addModule', moduleCode, targetGrade, mc);
+			Meteor.call('updateCAP', targetGrade, currentUser, mc);
 
 			event.target.moduleCode.value ="";
+			event.target.mc.value ="";
 			event.target.targetGrade.value ="";
 			
 			Bert.alert("Your Module Was Added!", "success", "growl-top-right");

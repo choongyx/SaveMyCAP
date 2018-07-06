@@ -46,7 +46,7 @@ Template.profile.events({
 	"click #delete-mod": function() {
 		var thisMod = Modules.findOne({_id: this._id});
 		
-		Meteor.call("deleteCapScore", thisMod.targetGrade, Meteor.userId());
+		Meteor.call("deleteCapScore", thisMod.targetGrade, Meteor.userId(), thisMod.mc);
 		Meteor.call("removeModule", this._id);
 		Bert.alert("Your module was deleted", "success", "growl-top-right");
 		return false;
