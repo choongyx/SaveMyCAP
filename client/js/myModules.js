@@ -31,10 +31,11 @@ Template.myModules.helpers({
 Template.myModules.events({
 	"click #delete-ca": function() {
 		var thisCAscore = Scores.findOne({_id: this._id}).score;
+		var thisCAweightage = Scores.findOne({_id: this._id}).weightage;
 		var thisCAkey = Scores.findOne({_id: this._id}).key;
 		var thisMod = Modules.findOne({_id: thisCAkey})._id;
 		Meteor.call("removeCA", this._id);
-		Meteor.call("deleteScores", thisCAscore, thisMod);
+		Meteor.call("deleteScores", thisCAscore, thisCAweightage ,thisMod);
 		
 		Bert.alert("CA Component deleted", "success", "growl-top-right");
 		return false;
