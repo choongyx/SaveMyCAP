@@ -57,6 +57,12 @@ Template.myModules.events({
 	    var thisMod = Modules.findOne({_id: this._id})._id;
 	    var currentMod = Modules.findOne({_id: thisMod});
 
+	    //check if mark <= totalMark
+	    if(mark> totalMark) {
+	    	Bert.alert("Marks obtained cannot be greater than total mark.", "danger", "growl-top-right");
+	    	return false;
+	    }
+
 	    //check if current total weightages all add up to already 100
 	    if(currentMod.totalWeightage == 100) {
 	    	Bert.alert("All weightages already added up to 100%. Cannot add more CA Components.", "danger", "growl-top-right");
