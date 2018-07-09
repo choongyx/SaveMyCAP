@@ -17,7 +17,7 @@
 }
 
 .module-added {
-	width: 1220px;
+	width: 185%;
 	border: 1px solid #ececec;
 	background-color: #FFFEF5;
 	padding: 10px 20px;
@@ -37,7 +37,7 @@
   font-size: 18px;
   border: none;
   outline: none;
-  background-color: #e6ccff;
+  background-color: #7700b3;
   color: white;
   cursor: pointer;
   padding: 15px;
@@ -46,4 +46,13 @@
 
 #myBtn:hover {
   background-color: #555;
+}
+
+table, th, td {
+    border: 1px solid #cccccc
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
 }
