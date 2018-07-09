@@ -47,21 +47,16 @@ Template.myModules.events({
 Template.myModules.events({
 	'submit .update-form': function(){
 
-	    //event.preventDefault();
+	    event.preventDefault();
 
 	   	// Get input value
 	    var ca = event.target.ca.value;
 	    var weightage = event.target.weightage.value;
 	    var mark = event.target.mark.value;
 	    var totalMark = event.target.totalMark.value;    
+
 	    var thisMod = Modules.findOne({_id: this._id})._id;
 	    var currentMod = Modules.findOne({_id: thisMod});
-
-	    //check if mark <= totalMark
-	    if(mark> totalMark) {
-	    	Bert.alert("Marks obtained cannot be greater than total mark.", "danger", "growl-top-right");
-	    	return false;
-	    }
 
 	    //check if current total weightages all add up to already 100
 	    if(currentMod.totalWeightage == 100) {
@@ -69,28 +64,26 @@ Template.myModules.events({
 	    	return false;
 	    } 
 
-		    if (isNotEmpty(ca) &&
-		      isNotEmpty(weightage) &&
-		      isNotEmpty(mark) &&
-		      isNotEmpty(totalMark)) {
+		if (isNotEmpty(ca) &&
+			isNotEmpty(weightage) &&
+		    isNotEmpty(mark) &&
+		    isNotEmpty(totalMark) && markIsNotGreaterThanTotalMark(mark, totalMark)) {
 
-		      Meteor.call('addScores', ca, weightage, mark, totalMark, thisMod, (error, response) => {
-		      		if(!response){
-		      			Bert.alert("Weightage cannot be greater than 100%", "danger", "growl-top-right");
-		      			return false;
-		      		} 
-		      	});
+		    Meteor.call('addScores', ca, weightage, mark, totalMark, thisMod, (error, response) => {
+		    	if(!response){
+		    		Bert.alert("Weightage cannot be greater than 100%", "danger", "growl-top-right");
+		    		return false;
+		      	} 
+		    });
 
-		      	// Clear form
-		      	event.target.ca.value ="";
-				event.target.weightage.value ="";
-				event.target.mark.value ="";
-				event.target.totalMark.value ="";
+		    // Clear form
+		    event.target.ca.value ="";
+		    event.target.weightage.value ="";
+			event.target.mark.value ="";
+			event.target.totalMark.value ="";
 				
-				Bert.alert("Your score was updated!", "success", "growl-top-right");	
-		  	} else {
-		      	Bert.alert("Please input all fields", "danger", "growl-top-right");
-		    }
+			Bert.alert("Your score was updated!", "success", "growl-top-right");	
+		}
 
 	    return false;
 	},
@@ -157,4 +150,14 @@ var isNotEmpty = function(value){
 	}
 	Bert.alert("Please fill in all fields", "danger", "growl-top-right");
 	return false;
+}
+
+var markIsNotGreaterThanTotalMark = function(mark, totalMark) {
+	var markNum = parseInt(mark);
+	var totalMarkNum = parseInt(totalMark);
+	if(markNum <= totalMarkNum) {
+		return true;
+	}
+	Bert.alert("Marks obtained cannot be greater than total mark.", "danger", "growl-top-right");
+	return false;	
 }
