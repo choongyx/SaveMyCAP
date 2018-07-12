@@ -2,7 +2,7 @@ Template.profile.rendered = function() {
 	$("#profile-link").addClass('selected');
 	$("#myModules-link").removeClass('selected');
 	$("#login-link").removeClass('selected');
-	$("#add-link").removeClass('selected');
+	//$("#add-link").removeClass('selected');
 }
 
 Template.profile.helpers({
