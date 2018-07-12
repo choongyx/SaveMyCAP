@@ -5,6 +5,34 @@ Template.myModules.rendered = function() {
 	$("#add-link").removeClass('selected');
 }
 
+Template.myModules.events({
+	"submit .add-module": function() {
+		var moduleCode = event.target.moduleCode.value;
+		var mc = event.target.mc.value;
+		var targetGrade = event.target.targetGrade.value;
+		var currentUser = Meteor.userId();
+
+		if (isNotEmpty(moduleCode) &&
+			isNotEmpty(targetGrade) &&
+			isNotEmpty(mc)) {
+			
+			Meteor.call('addModule', moduleCode, targetGrade, mc);
+			Meteor.call('updateCAP', targetGrade, currentUser, mc);
+
+			event.target.moduleCode.value ="";
+			event.target.mc.value ="";
+			event.target.targetGrade.value ="";
+			
+			Bert.alert("Your Module Was Added!", "success", "growl-top-right");
+
+
+		} else {
+			Bert.alert("Something went wrong", "danger", "growl-top-right");
+		}
+		return false;
+	}
+});
+
 Template.myModules.helpers({
 	module: function() {
 		var username = Meteor.user().username;
@@ -89,58 +117,6 @@ Template.myModules.events({
 	},
 
 });
-
-	/* FROM ORIGINAL CODE, I KEEP THIS HERE FOR REFERENCE
-
-	"click #frown": function() {
-		var thisUser = Meteor.userId();
-		var thisJoke = Jokes.findOne({_id: this._id})._id;
-		var jokeAuthor = Jokes.findOne({_id: this._id}).userId;
-		var Name = Meteor.user().username;
-		var thisJokesVotes = Jokes.findOne({_id: this._id}, {voted: {$in: Name}}).voted;
-
-		if (thisJokesVotes.indexOf(Name) > -1) { //if there are votes in this joke > -1, cannot vote twice
-			Bert.alert("You cannot vote twice", "danger", "growl-top-right");
-			//In the array, meaning user has voted
-		} else {
-			//Not in the Array, do stuff
-			Meteor.call("countVote", thisJoke, Name);
-			Meteor.call("userPointFrown", jokeAuthor);
-			Meteor.call("frownVote", thisUser, thisJoke);
-			Bert.alert("Your vote was placed", "success", "growl-top-right");
-		}
-
-		if (Name == thisJokesVotes) {
-			Bert.alert("You cannot vote for your own joke", "danger", "growl-top-right");
-		}
-	},
-		
-	"click #puke": function() {
-		var thisUser = Meteor.userId();
-		var thisJoke = Jokes.findOne({_id: this._id})._id;
-		var jokeAuthor = Jokes.findOne({_id: this._id}).userId;
-		var Name = Meteor.user().username;
-		var thisJokesVotes = Jokes.findOne({_id: this._id}, {voted: {$in: Name}}).voted;
-
-		if (thisJokesVotes.indexOf(Name) > -1) { //if there are votes in this joke > -1, cannot vote twice
-			Bert.alert("You cannot vote twice", "danger", "growl-top-right");
-			//In the array, meaning user has voted
-		} else {
-			//Not in the Array, do stuff
-			Meteor.call("countVote", thisJoke, Name);
-			Meteor.call("userPointPuke", jokeAuthor);
-			Meteor.call("pukeVote", thisUser, thisJoke);
-			Bert.alert("Your vote was placed", "success", "growl-top-right");
-		}
-
-		if (Name == thisJokesVotes) {
-			Bert.alert("You cannot vote for your own joke", "danger", "growl-top-right");
-		}		
-	},
-	
-});
-*/
-
 
 // Validation rules
 

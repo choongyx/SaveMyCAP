@@ -1,9 +1,48 @@
-
-
-
 <template name ="myModules">
-    {{#if currentUser}}
 
+    {{#if currentUser}}
+    <div id="addModule-wrap">
+        <h1>Add Modules</h1>
+        <center>
+            <form class="add-module">
+                <br>
+                <div>
+                    <h4>Enter module code: </h4>
+                    <label for="moduleCode" class="sr-only">Module Code</label>
+                    <input type="text" name="moduleCode" id="moduleCode" class="form-control" placeholder="e.g.CS2030">
+                </div>
+                <div>
+                    <h4>Enter modular credits (MCs) for this module: </h4>
+                    <label for="mc" class="sr-only">mc</label>
+                    <input type="number" name="mc" id="mc" class="form-control" placeholder="e.g.4">
+                </div>
+                <div>
+                    <h4>Enter your target grade for this module:</h4>
+                    <label for="targetGrade" class="sr-only">Target Grade</label>
+                    <select name="targetGrade" id="targetGrade" class="form-control" placeholder="Target Grade">
+                        <option value="A+">A+</option>
+                        <option value="A">A</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B">B</option>
+                        <option value="B-">B-</option>
+                        <option value="C+">C+</option>
+                        <option value="C">C</option>
+                        <option value="D+">D+</option>
+                        <option value="D">D</option>
+                        <option value="F">F</option>
+                        <option value="CS">CS</option>
+                        <option value="CU">CU</option>
+                    </select>
+                </div>
+                
+                <button class="btn btn-lg btn-success btn-block" type = "submit">add</button>
+            </form>
+        </center>
+    </div>
+    <br>
+
+    <div>   
     <h1>My Modules</h1> <br>
     
     <p>
@@ -13,8 +52,6 @@
     </p>
 
     <br>
-
-
     {{#each module}}
     <!--start of mod-->
     <div class = "module-wrap">
@@ -43,8 +80,7 @@
                             <th>Actions </th>
                             </tr>
                         </thead>
-                        
-                        
+                                 
                         <tbody>       
                             {{#each score}}
                             <tr>
@@ -80,12 +116,9 @@
 
     {{/each}}
 
-
-
-    {{else}}
-    <h3>Please log in to view your modules</h3>
+    </div>
     {{/if}}
-
+    
     <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
     <script>
     // When the user scrolls down 20px from the top of the document, show the button
@@ -106,7 +139,6 @@
     }
     </script>
 
+    
 
 </template>
-
-
