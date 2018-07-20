@@ -61,18 +61,19 @@
 
     <div>   
     <h1>My Modules</h1> 
-    
-    <p>
-    {{#each module}}
-    <a  class="btn btn-info btn-lg"  role="button" href="#{{moduleCode}} ">{{moduleCode}}</a>
+
+    {{#each academicYear}}
+    <a  class="btn btn-info btn-lg"  role="button" href="#{{acadYear}} ">{{acadYear}}</a>
     {{/each}}
+    <p>
+
     </p>
 
     {{#each academicYear}}
     
     <h2> <mark>{{acadYear}} </mark></h2>
-
     <br>
+
     {{#each module}}
     <!--start of mod-->
     <div class = "module-wrap">
