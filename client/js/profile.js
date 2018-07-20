@@ -2,7 +2,6 @@ Template.profile.rendered = function() {
 	$("#profile-link").addClass('selected');
 	$("#myModules-link").removeClass('selected');
 	$("#login-link").removeClass('selected');
-	//$("#add-link").removeClass('selected');
 }
 
 Template.profile.helpers({
@@ -28,7 +27,14 @@ Template.profile.helpers({
 	targetCAP: function() {
 		var username = Meteor.user().username;
 		var userId = Meteor.userId();
-		var targetCAP = Cap.findOne({userId: userId}).finalCap;
+		var thisUser = Cap.findOne({userId: userId});
+		var targetCAP = thisUser.totalCap/thisUser.numOfMc;
+
+		//zero modules
+		if(thisUser.numOfMc == 0) {
+			targetCAP = 0;
+		}
+		
 		return targetCAP;
 	},
 
@@ -36,9 +42,19 @@ Template.profile.helpers({
 	module: function() {
 		var username = Meteor.user().username;
 		var userId = Meteor.userId();
+		var thisYear = Sem.findOne({_id: this._id});
 		
-		var module = Modules.find({userId: userId}, {sort: {createdAt: -1}});
+		var module = Modules.find({userId: userId, acadYear: thisYear.acadYear}, {sort: {createdAt: -1}});
 		return module;
+		
+	},
+
+	academicYear: function() {
+		var userId = Meteor.userId();
+
+		var academicYear = Sem.find({userId: userId}, {sort: {acadYear: -1}});
+
+		return academicYear;
 	}
 });
 

@@ -19,7 +19,7 @@
                 <div>
                     <h4>Enter your target grade for this module:</h4>
                     <label for="targetGrade" class="sr-only">Target Grade</label>
-                    <select name="targetGrade" id="targetGrade" class="form-control" placeholder="Target Grade">
+                    <select name="targetGrade" id="targetGrade" class="form-control">
                         <option value="A+">A+</option>
                         <option value="A">A</option>
                         <option value="A-">A-</option>
@@ -35,6 +35,23 @@
                         <option value="CU">CU</option>
                     </select>
                 </div>
+                <div>
+                    <h4>Enter academic year and semester:</h4>
+                    <label for="acadYear" class="sr-only">Target Grade</label>
+                    <select name="acadYear" id="acadYear" class="form-control">
+                        <option value="AY2018-19 Sem 1">AY2018-19 Sem 1</option>
+                        <option value="AY2017-18 Sem 2">AY2017-18 Sem 2</option>
+                        <option value="AY2017-18 Sem 1">AY2017-18 Sem 1</option>
+                        <option value="AY2016-17 Sem 2">AY2016-17 Sem 2</option>
+                        <option value="AY2016-17 Sem 1">AY2016-17 Sem 1</option>
+                        <option value="AY2015-16 Sem 2">AY2015-16 Sem 2</option>
+                        <option value="AY2015-16 Sem 1">AY2015-16 Sem 1</option>
+                        <option value="AY2014-15 Sem 2">AY2014-15 Sem 2</option>
+                        <option value="AY2014-15 Sem 1">AY2014-15 Sem 1</option>
+                        <option value="AY2013-14 Sem 2">AY2013-14 Sem 2</option>
+                        <option value="AY2013-14 Sem 1">AY2013-14 Sem 1</option>
+                    </select>
+                </div>
                 
                 <button class="btn btn-lg btn-success btn-block" type = "submit">add</button>
             </form>
@@ -43,13 +60,17 @@
     <br>
 
     <div>   
-    <h1>My Modules</h1> <br>
+    <h1>My Modules</h1> 
     
     <p>
     {{#each module}}
     <a  class="btn btn-info btn-lg"  role="button" href="#{{moduleCode}} ">{{moduleCode}}</a>
     {{/each}}
     </p>
+
+    {{#each academicYear}}
+    
+    <h2> {{acadYear}} </h2>
 
     <br>
     {{#each module}}
@@ -110,10 +131,10 @@
         </div>
     </div>
     <!--end of one mod-->
-    
+    {{/each}}
+
     {{else}}
     <h3>No modules to display</h3>
-
     {{/each}}
 
     </div>

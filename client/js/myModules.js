@@ -2,7 +2,6 @@ Template.myModules.rendered = function() {
 	$("#myModules-link").addClass('selected');
 	$("#profile-link").removeClass('selected');
 	$("#login-link").removeClass('selected');
-	//$("#add-link").removeClass('selected');
 }
 
 Template.myModules.events({
@@ -10,21 +9,23 @@ Template.myModules.events({
 		var moduleCode = event.target.moduleCode.value;
 		var mc = event.target.mc.value;
 		var targetGrade = event.target.targetGrade.value;
+		var acadYear = event.target.acadYear.value;
 		var currentUser = Meteor.userId();
 
 		if (isNotEmpty(moduleCode) &&
 			isNotEmpty(targetGrade) &&
-			isNotEmpty(mc)) {
+			isNotEmpty(mc) && 
+			isNotEmpty(acadYear)) {
 			
-			Meteor.call('addModule', moduleCode, targetGrade, mc);
-			Meteor.call('updateCAP', targetGrade, currentUser, mc);
+			Meteor.call('addModule', moduleCode, targetGrade, mc, acadYear);
+			Meteor.call('updateCAP', targetGrade, currentUser, mc, acadYear);
 
 			event.target.moduleCode.value ="";
 			event.target.mc.value ="";
 			event.target.targetGrade.value ="";
+			event.target.acadYear.value ="";
 			
 			Bert.alert("Your Module Was Added!", "success", "growl-top-right");
-
 
 		} else {
 			Bert.alert("Something went wrong", "danger", "growl-top-right");
@@ -37,10 +38,20 @@ Template.myModules.helpers({
 	module: function() {
 		var username = Meteor.user().username;
 		var userId = Meteor.userId();
-		//get the jokes that belong to this user, sort by latest ones appear first
+		var thisYear = Sem.findOne({_id: this._id});
 		
-		var module = Modules.find({userId: userId}, {sort: {createdAt: -1}});
+		var module = Modules.find({userId: userId, acadYear: thisYear.acadYear}, {sort: {createdAt: -1}});
 		return module;
+	}
+});
+
+Template.myModules.helpers({
+	academicYear: function() {
+		var userId = Meteor.userId();
+
+		var academicYear = Sem.find({userId: userId}, {sort: {acadYear: -1}});
+
+		return academicYear;
 	}
 });
 

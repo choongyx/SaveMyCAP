@@ -15,6 +15,10 @@
 
     <h1>My Modules</h1>
 
+    {{#each academicYear}}
+    
+    <h2> {{acadYear}} </h2>
+
     {{#each module}}
     <!--start of module-->
     <div class = "module-wrap">
@@ -28,6 +32,8 @@
         </div>
     </div>
     <!--end of module-->
+    {{/each}}
+    
     {{else}}
     <h3>No modules to display</h3>
 
