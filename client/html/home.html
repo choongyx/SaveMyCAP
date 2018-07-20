@@ -1,19 +1,18 @@
 <template name ="myModules">
 
     {{#if currentUser}}
-    <center>
-    <h1>My Modules</h1> 
-    </center>
+    <h1>My Modules</h1>
     
     <p>
     {{#each academicYear}}
-    <a  class="btn btn-info btn-lg"  role="button" href="#{{acadYear}}">{{acadYear}}</a>
+    <a  class="btn btn-info btn-lg" role="button" href="#{{acadYear}}">{{acadYear}}</a>
     {{/each}}
     </p>
+    <br>
 
 
     {{#each academicYear}}
-    <h2 id = {{acadYear}} > <mark>{{acadYear}} </mark></h2>
+    <h2 id = {{acadYear}} ><mark> {{acadYear}} </mark></h2>
     <br>
 
     {{#each module}}

@@ -15,9 +15,18 @@
 
     <h1>My Modules</h1>
 
+        <p>
     {{#each academicYear}}
-    
-    <h2> <mark>{{acadYear}}</mark> </h2>
+    <a  class="btn btn-info btn-lg" role="button" href="#{{acadYear}}">{{acadYear}}</a>
+    {{/each}}
+    </p>
+    <br>
+
+
+    {{#each academicYear}}
+    <h2 id = {{acadYear}} ><mark> {{acadYear}} </mark></h2>
+    <br>
+
 
     {{#each module}}
     <!--start of module-->
