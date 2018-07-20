@@ -2,37 +2,8 @@ Template.myModules.rendered = function() {
 	$("#myModules-link").addClass('selected');
 	$("#profile-link").removeClass('selected');
 	$("#login-link").removeClass('selected');
+	$("#add-link").removeClass('selected');	
 }
-
-Template.myModules.events({
-	"submit .add-module": function() {
-		var moduleCode = event.target.moduleCode.value;
-		var mc = event.target.mc.value;
-		var targetGrade = event.target.targetGrade.value;
-		var acadYear = event.target.acadYear.value;
-		var currentUser = Meteor.userId();
-
-		if (isNotEmpty(moduleCode) &&
-			isNotEmpty(targetGrade) &&
-			isNotEmpty(mc) && 
-			isNotEmpty(acadYear)) {
-			
-			Meteor.call('addModule', moduleCode, targetGrade, mc, acadYear);
-			Meteor.call('updateCAP', targetGrade, currentUser, mc, acadYear);
-
-			event.target.moduleCode.value ="";
-			event.target.mc.value ="";
-			event.target.targetGrade.value ="";
-			event.target.acadYear.value ="";
-			
-			Bert.alert("Your Module Was Added!", "success", "growl-top-right");
-
-		} else {
-			Bert.alert("Something went wrong", "danger", "growl-top-right");
-		}
-		return false;
-	}
-});
 
 Template.myModules.helpers({
 	module: function() {
@@ -50,7 +21,6 @@ Template.myModules.helpers({
 		var userId = Meteor.userId();
 
 		var academicYear = Sem.find({userId: userId}, {sort: {acadYear: -1}});
-
 		return academicYear;
 	}
 });
