@@ -50,6 +50,10 @@ Template.myModules.events({
 		return false;
 	},
 
+	"click #edit-ca": function() {
+		Router.go('/edit'+this._id);
+		return false;
+	},
 });
 
 
@@ -76,7 +80,7 @@ Template.myModules.events({
 		if (isNotEmpty(ca) &&
 			isNotEmpty(weightage) &&
 		    isNotEmpty(mark) &&
-		    isNotEmpty(totalMark) && markIsNotGreaterThanTotalMark(mark, totalMark)) {
+		    isNotEmpty(totalMark) && markIsNotGreaterThanTotalMark(mark, totalMark) )  {
 
 		    Meteor.call('addScores', ca, weightage, mark, totalMark, thisMod, (error, response) => {
 		    	if(!response){
@@ -92,11 +96,33 @@ Template.myModules.events({
 			event.target.totalMark.value ="";
 				
 			Bert.alert("Your score was updated!", "success", "growl-top-right");	
+
+		} else if (isNotEmpty(ca) &&
+			isNotEmpty(weightage) && 
+			!isNotEmpty(mark) && 
+			!isNotEmpty(totalMark)) {
+
+			mark = 0;
+			totalMark = 0;
+
+			Meteor.call('addScores', ca, weightage, mark, totalMark, thisMod, (error, response) => {
+		    	if(!response){
+		    		Bert.alert("Weightage cannot be greater than 100%", "danger", "growl-top-right");
+		    		return false;
+		      	} 
+		    });
+
+		    // Clear form
+		    event.target.ca.value ="";
+		    event.target.weightage.value ="";
+			event.target.mark.value ="";
+			event.target.totalMark.value ="";
+				
+			Bert.alert("Your CA Component and weightage was updated!", "success", "growl-top-right");
 		}
 
 	    return false;
 	},
-
 });
 
 // Validation rules

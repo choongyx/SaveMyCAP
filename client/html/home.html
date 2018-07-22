@@ -2,14 +2,12 @@
 
     {{#if currentUser}}
     <h1>My Modules</h1>
-    
     <p>
     {{#each academicYear}}
     <a  class="btn btn-info btn-lg" role="button" href="#{{acadYear}}">{{acadYear}}</a>
     {{/each}}
     </p>
     <br>
-
 
     {{#each academicYear}}
     <h2 id = {{acadYear}} ><mark> {{acadYear}} </mark></h2>
@@ -51,7 +49,8 @@
                                 <td>{{weightage}} <br></td>
                                 <td>{{mark}} <br></td>
                                 <td>{{totalMark}}<br></td>
-                                <td> <button class="btn btn-sml btn-danger" id="delete-ca">Delete</button> </td>
+                                <td><button class="btn btn-success" data-toggle="modal" data-target="#addModal" id= "edit-ca">Edit</button>
+                                    <button class="btn btn-sml btn-danger" id="delete-ca">Delete</button> </td>
                             </tr>
                             {{/each}}
                                          
@@ -59,8 +58,8 @@
                                 
                             <td><input type="text" name="ca" id="ca" placeholder="e.g. Attendance"></td> 
                             <td><input type="number" name="weightage" min="0" max="100" step="1" id="weightage" placeholder="e.g. 15"></td>
-                            <td><input type="number" name="mark" min="0" id="mark"></td>
-                            <td><input type="number" name="totalMark" min="0" id="totalMark"></td>
+                            <td><input type="number" name="mark" min="0" id="mark" placeholder="Enter 0 if unknown"></td>
+                            <td><input type="number" name="totalMark" min="0" id="totalMark" placeholder="Enter 0 if unknown"></td>
                             <td> <button class="btn btn-sml btn-success" type = "submit">Update Score</button></td>
                             </tr>          
                             
@@ -82,15 +81,18 @@
     {{/if}}
     
     <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
     <script>
     // When the user scrolls down 20px from the top of the document, show the button
-    window.onscroll = function() {scrollFunction()};
+    window.onscroll = function() {
+        scrollFunction()
+    };
 
     function scrollFunction() {
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
             document.getElementById("myBtn").style.display = "block";
         } else {
-        document.getElementById("myBtn").style.display = "none";
+            document.getElementById("myBtn").style.display = "none";
         }
     }
 

@@ -1,0 +1,33 @@
+<template name = "edit">
+	<div id="editScore">
+		<center>
+			<h1 class="editCA-heading">Edit CA Components</h1>
+	        <form class="edit-form">
+	        	
+		        <table class = "table table-bordered">
+		            <thead>
+		              <tr>
+		                <th>CA Component</th>
+		                <th>Weightage (%)</th>
+		                <th>Marks Obtained</th>
+		                <th>Total Marks</th>
+		              </tr>
+		          </thead>
+		          <tbody>
+		              <tr>
+		                <td><input type="text" name="caEdited" id="caEdited" value = {{ca}}></td>
+		                <td><input type="number" name="weightageEdited" min="0" max="100" id="weightageEdited" value= {{weightage}}></td>
+		                <td><input type="number" name="markEdited" min="0" id="markEdited" value ={{mark}}></td>
+		                <td><input type="number" name="totalMarkEdited" min="0" id="totalMarkEdited" value ={{totalMark}}></td>
+		              </tr>
+		          </tbody>
+		        </table> <br>
+	        
+		        <p align="right">
+		        <button class="btn btn-lg btn-success" type = "submit">Edit Score</button>
+		        </p>
+	    	</form>
+		</center>
+	</div>
+
+</template>
