@@ -1,105 +1,17 @@
-<template name ="myModules">
-
+<template name="login">
     {{#if currentUser}}
-    <h1>My Modules</h1>
-    <p>
-    {{#each academicYear}}
-    <a  class="btn btn-info btn-lg" role="button" href="#{{acadYear}}">{{acadYear}}</a>
-    {{/each}}
-    </p>
-    <br>
-
-    {{#each academicYear}}
-    <h2 id = {{acadYear}} ><mark> {{acadYear}} </mark></h2>
-    <br>
-
-    {{#each module}}
-    <!--start of mod-->
-    <div class = "module-wrap">
-        <div class ="row">
-            <div class ="module-added" id ={{moduleCode}}>
-                <h2 id = {{moduleCode}} class="module-title">{{moduleCode}}</h2>
-                <h4 class="regular target-grade">Target: {{targetGrade}}</h4>
-                
-                <h4> Current score accumulated: {{accumulatedScore}} / 100 </h4>
-              
-                <p class="date">Added on: {{date}}</p>
-
-                <br>
-
-                <div class="container">
-                    <p class="regular scores">
-                        <form class="update-form">
-                    <table width="90%">
-
-                        <thead>
-                            <tr>
-                            <th>CA Component</th>
-                            <th>Weightage (%)</th>
-                            <th>Marks Obtained</th>
-                            <th>Total Marks</th>
-                            <th>Actions </th>
-                            </tr>
-                        </thead>
-                                 
-                        <tbody>       
-                            {{#each score}}
-                            <tr>
-                                <td>{{ca}}</td>
-                                <td>{{weightage}} <br></td>
-                                <td>{{mark}} <br></td>
-                                <td>{{totalMark}}<br></td>
-                                <td><button class="btn btn-success" data-toggle="modal" data-target="#addModal" id= "edit-ca">Edit</button>
-                                    <button class="btn btn-sml btn-danger" id="delete-ca">Delete</button> </td>
-                            </tr>
-                            {{/each}}
-                                         
-                            <tr>
-                                
-                            <td><input type="text" name="ca" id="ca" placeholder="e.g. Attendance"></td> 
-                            <td><input type="number" name="weightage" min="0" max="100" step="1" id="weightage" placeholder="e.g. 15"></td>
-                            <td><input type="number" name="mark" min="0" id="mark" placeholder="Enter 0 if unknown"></td>
-                            <td><input type="number" name="totalMark" min="0" id="totalMark" placeholder="Enter 0 if unknown"></td>
-                            <td> <button class="btn btn-sml btn-success" type = "submit">Update Score</button></td>
-                            </tr>          
-                            
-                        </tbody>
-                    </table>
-                     </form>
-                    </p>  
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--end of one mod-->
-    {{/each}}
-
+    <h3 class="black">You are logged in. return <a href="/myModules">home</a></h3>
     {{else}}
-    <h3>No modules to display</h3>
-    {{/each}}
+    <form class="form-signin">
+        <h2 class="form-signin-heading">Account Login</h2>
+        <label for="email" class="sr-only">Email Address</label>
+        <input type="email" name="email" id="email" class="form-control" placeholder="Email Address">
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" name="password" id="password" class="form-control" placeholder="Password">
 
+        <button type="submit" id="login-btn" class="btn btn-lg btn-primary btn-block">Log In</button>
+        <p>No Account? <a href="/signup">Create Account</a></p>
+
+    </form>
     {{/if}}
-    
-    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-
-    <script>
-    // When the user scrolls down 20px from the top of the document, show the button
-    window.onscroll = function() {
-        scrollFunction()
-    };
-
-    function scrollFunction() {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            document.getElementById("myBtn").style.display = "block";
-        } else {
-            document.getElementById("myBtn").style.display = "none";
-        }
-    }
-
-    // When the user clicks on the button, scroll to the top of the document
-    function topFunction() {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-    }
-    </script>
 </template>
