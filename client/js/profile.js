@@ -39,6 +39,19 @@ Template.profile.helpers({
 		return targetCAP;
 	},
 
+	actualCAP: function() {
+		var username = Meteor.user().username;
+		var userId = Meteor.userId();
+		var thisUser = Actualcap.findOne({userId: userId});
+		var actualCAP = thisUser.totalActualCap/thisUser.totalMc;
+
+		//zero modules
+		if(thisUser.totalMc == 0) {
+			actualCAP = 0;
+		}
+		
+		return actualCAP;
+	},
 
 	module: function() {
 		var username = Meteor.user().username;
@@ -64,6 +77,7 @@ Template.profile.events({
 		var thisMod = Modules.findOne({_id: this._id});
 		
 		Meteor.call("deleteCapScore", thisMod.targetGrade, Meteor.userId(), thisMod.mc);
+		Meteor.call("deleteActualCapScore", thisMod.actual, Meteor.userId(), thisMod.mc);
 		Meteor.call("removeModule", this._id);
 		Bert.alert("Your module was deleted", "success", "growl-top-right");
 		return false;

@@ -123,6 +123,27 @@ Template.myModules.events({
 
 	    return false;
 	},
+
+	'submit .actual-grade': function(){
+
+	    event.preventDefault();
+
+	   	// Get input value
+	    var actualGrade = event.target.actualGrade.value;
+
+	    var thisModId = Modules.findOne({_id: this._id})._id;
+
+		if (isNotEmpty(actualGrade) &&
+			isNotDash(actualGrade))  {
+		    Meteor.call('addActualGrade', actualGrade, thisModId);
+
+		    event.target.actualGrade.value = actualGrade; //put the new one
+				
+			Bert.alert("Actual grade updated! See updated CAP on profile page", "success", "growl-top-right");	
+		}
+
+	    return false;
+	},
 });
 
 // Validation rules
@@ -132,6 +153,14 @@ var isNotEmpty = function(value){
 		return true;
 	}
 	Bert.alert("Please fill in all fields", "danger", "growl-top-right");
+	return false;
+}
+
+var isNotDash = function(value){
+	if(value != '-') {
+		return true;
+	}
+	Bert.alert("Please input a valid grade", "danger", "growl-top-right");
 	return false;
 }
 

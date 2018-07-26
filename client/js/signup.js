@@ -31,6 +31,7 @@ Template.signup.events({
 			});
 
 			Meteor.call('initialiseCAP');
+			Meteor.call('initialiseActualCAP');
 		}
 
 		return false; //prevent submit

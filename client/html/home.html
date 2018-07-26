@@ -20,6 +20,26 @@
             <div class ="module-added" id ={{moduleCode}}>
                 <h2 id = {{moduleCode}} class="module-title">{{moduleCode}}</h2>
                 <h4 class="regular target-grade">Target: {{targetGrade}}</h4>
+
+                <form class="actual-grade">
+                    <h4 class="regular actual-grade">Actual: 
+                    <select name="actualGrade" id="actualGrade" value={{actual}}>
+                        <option value="" disabled selected>{{actual}}</option>
+                        <option value="A+">A+</option>
+                        <option value="A">A</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B">B</option>
+                        <option value="B-">B-</option>
+                        <option value="C+">C+</option>
+                        <option value="C">C</option>
+                        <option value="D+">D+</option>
+                        <option value="D">D</option>
+                        <option value="F">F</option>
+                    </select>
+                    <button class="btn btn-success" type = "submit">Update</button><br>
+                    </h4>
+                </form>
                 
                 <h4> Current score accumulated: {{accumulatedScore}} / 100 </h4>
               
@@ -49,7 +69,7 @@
                                 <td>{{weightage}} <br></td>
                                 <td>{{mark}} <br></td>
                                 <td>{{totalMark}}<br></td>
-                                <td><button class="btn btn-success" data-toggle="modal" data-target="#addModal" id= "edit-ca">Edit</button>
+                                <td><button class="btn btn-success" id= "edit-ca">Edit</button>
                                     <button class="btn btn-sml btn-danger" id="delete-ca">Delete</button> </td>
                             </tr>
                             {{/each}}

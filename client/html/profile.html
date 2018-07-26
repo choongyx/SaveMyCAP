@@ -8,6 +8,7 @@
 			<h1 class="username">{{username}}</h1>
 			<h3>{{email}}</h3>
             <h3>Target CAP : {{targetCAP}} </h3>
+            <h3>Actual CAP : {{actualCAP}}</h3>
 		</center>
 
 	</div>
@@ -15,7 +16,7 @@
 
     <h1>My Modules</h1>
 
-        <p>
+    <p>
     {{#each academicYear}}
     <a  class="btn btn-info btn-lg" role="button" href="#{{acadYear}}">{{acadYear}}</a>
     {{/each}}
@@ -35,6 +36,7 @@
             <div class ="module-addedprofile" id ="info">
                 <h2 class="module-title">{{moduleCode}}</h2>
                 <h4 class="regular target-grade">Target: {{targetGrade}}</h4>
+                <h4 class="regular actual-grade">Actual: {{actual}}</h4>
                 <p class="date">Added on: {{date}}</p>
                 <button class="btn btn-sml btn-danger" id="delete-mod">Delete Module</button>
             </div>
@@ -49,5 +51,28 @@
     {{/each}}
 
     {{/if}}
+
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("myBtn").style.display = "block";
+        } else {
+            document.getElementById("myBtn").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
 
 </template>
