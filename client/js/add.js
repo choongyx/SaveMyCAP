@@ -18,15 +18,16 @@ Template.add.events({
 			isNotEmpty(mc) && 
 			isNotEmpty(acadYear)) {
 			
-			Meteor.call('addModule', moduleCode, targetGrade, mc, acadYear);
+			Meteor.call('addModule', moduleCode.toUpperCase(), targetGrade, mc, acadYear);
 			Meteor.call('updateCAP', targetGrade, currentUser, mc);
 
+			//clear form
 			event.target.moduleCode.value ="";
 			event.target.mc.value ="";
 			event.target.targetGrade.value ="";
 			event.target.acadYear.value ="";
 			
-			Bert.alert("Your Module Was Added!", "success", "growl-top-right");
+			Bert.alert("Your module was added!", "success", "growl-top-right");
 
 		} else {
 			Bert.alert("Something went wrong", "danger", "growl-top-right");

@@ -9,8 +9,6 @@ Template.edit.events({
 	    var markEdited = event.target.markEdited.value;
 	    var totalMarkEdited = event.target.totalMarkEdited.value;    
 
-	    var thisCAscore = Scores.findOne({_id: this._id}).score;
-		var thisCAweightage = Scores.findOne({_id: this._id}).weightage;
 		var thisCAkey = Scores.findOne({_id: this._id}).key;
 		var thisCAId = Scores.findOne({_id: this._id})._id;
 		var thisModId = Modules.findOne({_id: thisCAkey})._id;

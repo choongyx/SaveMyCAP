@@ -7,7 +7,6 @@ Template.myModules.rendered = function() {
 
 Template.myModules.helpers({
 	module: function() {
-		var username = Meteor.user().username;
 		var userId = Meteor.userId();
 		var thisYear = Sem.findOne({_id: this._id});
 		
@@ -27,12 +26,10 @@ Template.myModules.helpers({
 
 Template.myModules.helpers({
 	score: function() {
-		var username = Meteor.user().username;
-		var userId = Meteor.userId();
-		var thisMod = Modules.findOne({_id: this._id})._id;
+		var thisModId = Modules.findOne({_id: this._id})._id;
 		//get the scores whose key is same as this current module id 
 
-		var score = Scores.find({key: thisMod}, {sort: {createdAt: -1}});
+		var score = Scores.find({key: thisModId}, {sort: {createdAt: -1}});
 		return score;
 	}
 });
@@ -42,9 +39,9 @@ Template.myModules.events({
 		var thisCAscore = Scores.findOne({_id: this._id}).score;
 		var thisCAweightage = Scores.findOne({_id: this._id}).weightage;
 		var thisCAkey = Scores.findOne({_id: this._id}).key;
-		var thisMod = Modules.findOne({_id: thisCAkey})._id;
+		var thisModId = Modules.findOne({_id: thisCAkey})._id;
 		Meteor.call("removeCA", this._id);
-		Meteor.call("deleteScores", thisCAscore, thisCAweightage ,thisMod);
+		Meteor.call("deleteScores", thisCAscore, thisCAweightage ,thisModId);
 		
 		Bert.alert("CA Component deleted", "success", "growl-top-right");
 		return false;
@@ -68,8 +65,8 @@ Template.myModules.events({
 	    var mark = event.target.mark.value;
 	    var totalMark = event.target.totalMark.value;    
 
-	    var thisMod = Modules.findOne({_id: this._id})._id;
-	    var currentMod = Modules.findOne({_id: thisMod});
+	    var thisModId = Modules.findOne({_id: this._id})._id;
+	    var currentMod = Modules.findOne({_id: thisModId});
 
 	    //check if current total weightages all add up to already 100
 	    if(currentMod.totalWeightage == 100) {
@@ -82,7 +79,7 @@ Template.myModules.events({
 		    isNotEmpty(mark) &&
 		    isNotEmpty(totalMark) && markIsNotGreaterThanTotalMark(mark, totalMark) )  {
 
-		    Meteor.call('addScores', ca, weightage, mark, totalMark, thisMod, (error, response) => {
+		    Meteor.call('addScores', ca, weightage, mark, totalMark, thisModId, (error, response) => {
 		    	if(!response){
 		    		Bert.alert("Weightage cannot be greater than 100%", "danger", "growl-top-right");
 		    		return false;
@@ -105,7 +102,7 @@ Template.myModules.events({
 			mark = 0;
 			totalMark = 0;
 
-			Meteor.call('addScores', ca, weightage, mark, totalMark, thisMod, (error, response) => {
+			Meteor.call('addScores', ca, weightage, mark, totalMark, thisModId, (error, response) => {
 		    	if(!response){
 		    		Bert.alert("Weightage cannot be greater than 100%", "danger", "growl-top-right");
 		    		return false;

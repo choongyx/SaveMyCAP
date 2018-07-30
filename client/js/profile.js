@@ -26,7 +26,6 @@ Template.profile.helpers({
 	},
 	
 	targetCAP: function() {
-		var username = Meteor.user().username;
 		var userId = Meteor.userId();
 		var thisUser = Cap.findOne({userId: userId});
 		var targetCAP = thisUser.totalCap/thisUser.numOfMc;
@@ -40,7 +39,6 @@ Template.profile.helpers({
 	},
 
 	actualCAP: function() {
-		var username = Meteor.user().username;
 		var userId = Meteor.userId();
 		var thisUser = Actualcap.findOne({userId: userId});
 		var actualCAP = thisUser.totalActualCap/thisUser.totalMc;
@@ -54,7 +52,6 @@ Template.profile.helpers({
 	},
 
 	module: function() {
-		var username = Meteor.user().username;
 		var userId = Meteor.userId();
 		var thisYear = Sem.findOne({_id: this._id});
 		
